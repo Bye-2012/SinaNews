@@ -17,6 +17,7 @@ public class UrlUtils {
     public static final String CATE_LIST = BASE + "news/cate_list?type=";
     public static final String NEWS_LIST = BASE + "news/get_news_list?cate_id=";
     public static final String NEWS_DETAILS = BASE + "news/news_detail?news_id=";
+    public static final String NEWS_COMMENT = BASE + "news/get_comment_list?item_id=";
 
     //图片新闻
     public static final String PIC_NEWS_LIST = BASE + "news/get_pic_news_list?cate_id=";

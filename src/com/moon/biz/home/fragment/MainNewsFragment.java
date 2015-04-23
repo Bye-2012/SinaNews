@@ -27,7 +27,6 @@ import java.util.List;
 
 public class MainNewsFragment extends Fragment {
     private int tabIndex;
-    private AppCtx appctx;
     private List<String[]> titleList;
     private LinearLayout layout_title;
     private ViewPager viewPager_content;
@@ -42,7 +41,7 @@ public class MainNewsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         tabIndex = getArguments().getInt("tabIndex");
-        appctx = AppCtx.getInstance();
+        AppCtx appctx = AppCtx.getInstance();
         titleList = appctx.getTitleList();
         list_contents = new ArrayList<Fragment>();
     }

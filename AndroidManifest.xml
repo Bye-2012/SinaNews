@@ -24,5 +24,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".textNews.TContentAct">
+            <intent-filter>
+                <action android:name="com.moon.activity.txt.content"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".textNews.MoreCommentAct"/>
     </application>
 </manifest>

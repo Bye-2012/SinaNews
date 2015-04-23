@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.moon.adapter.ContentPageAdapter;
 import com.moon.app.AppCtx;
 import com.moon.biz.R;
-import com.moon.fragment.NewsFragment;
 import com.moon.fragment.PicFragment;
 
 import java.util.ArrayList;

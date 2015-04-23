@@ -1,5 +1,6 @@
 package com.moon.fragment;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,8 @@ import com.moon.biz.R;
 import com.moon.common.utils.GetJsonString;
 import com.moon.common.utils.JsonInfoUtils;
 import com.moon.common.utils.UrlUtils;
+import com.moon.common.widgets.views.pulltorefresh.PullToRefreshBase;
+import com.moon.common.widgets.views.pulltorefresh.PullToRefreshListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,22 +34,21 @@ import java.util.Map;
  */
 public class NewsFragment extends Fragment {
 
-    private ListView listView_news;
-    private List<Map<String, Object>> newsList;
+    private List<Map<String, Object>> newsList;//ListView的数据源
     private TextNewsAdapter adapter;
 
     private String url;
     private int cate_id;
-    private int pageNum = 0;
+    private int pageNum = 1;
     private List<View> pic_list;
     private NewsPicPagerAdapter picAdapter;
 
     private ImageView[] dots;
     private String[] pic_titles;
     private ViewPager viewPager_pic;
-    private RelativeLayout layout;
     private LinearLayout layout_viewpager;
     private TextView txt_pic_title;
+    private PullToRefreshListView pullToRefreshListView_main_news;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,41 +56,64 @@ public class NewsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         cate_id = getArguments().getInt("cate_id");
         newsList = new ArrayList<Map<String, Object>>();
         adapter = new TextNewsAdapter(newsList, getActivity());
 
+        //获得Fragment布局
         View ret = inflater.inflate(R.layout.fragment_news, container, false);
-        listView_news = (ListView) ret.findViewById(R.id.listView_news);
+        pullToRefreshListView_main_news = (PullToRefreshListView) ret.findViewById(R.id.pullToRefreshListView_main_news);
+        ListView listView_news = pullToRefreshListView_main_news.getRefreshableView();
 
+        //获得HeadView
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.news_pic, null);
-        layout = (RelativeLayout) view.findViewById(R.id.layout_news_pic);
+        RelativeLayout layout = (RelativeLayout) view.findViewById(R.id.layout_news_pic);
         viewPager_pic = (ViewPager) view.findViewById(R.id.viewPager_headline);
         layout_viewpager = (LinearLayout) view.findViewById(R.id.layout_viewpager);
         txt_pic_title = (TextView) view.findViewById(R.id.textView_headerimage_title);
 
-        listView_news.addHeaderView(layout);
-        listView_news.setAdapter(adapter);
-
+        //初始化数据
         initData();
 
-        listView_news.setOnScrollListener(new AbsListView.OnScrollListener() {
-            boolean isBottom = false;
-
+        //设置ListView及监听
+        listView_news.addHeaderView(layout);
+        listView_news.setAdapter(adapter);
+        listView_news.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-                if (isBottom && scrollState == SCROLL_STATE_IDLE) {
-                    updateData();
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String idd = newsList.get(position).get("id").toString();
+                int com_count = Integer.parseInt(newsList.get(position).get("comment_total").toString());
+
+                if (idd != null && com_count != -1) {
+                    Intent intent = new Intent();
+                    intent.setAction("com.moon.activity.txt.content");
+                    intent.addCategory("android.intent.category.DEFAULT");
+                    Bundle bundle = new Bundle();
+                    bundle.putString("id", idd);
+                    bundle.putInt("com_count", com_count);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
                 }
             }
+        });
 
+        //设置pullToRefreshListView监听
+        pullToRefreshListView_main_news.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener() {
             @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                isBottom = (firstVisibleItem + visibleItemCount) == totalItemCount;
+            public void onRefresh() {
+                pageNum = 1;
+                updateData();
             }
         });
+        pullToRefreshListView_main_news.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+            @Override
+            public void onLastItemVisible() {
+                updateData();
+            }
+        });
+
         return ret;
     }
 
@@ -96,18 +121,23 @@ public class NewsFragment extends Fragment {
      * 第一次加载数据
      */
     private void initData() {
-        url = UrlUtils.NEWS_LIST + cate_id + UrlUtils.NEWS_END + (++pageNum);
-
+        Log.e("1111.ppdd", pageNum + "");
+        url = UrlUtils.NEWS_LIST + cate_id + UrlUtils.NEWS_END + (pageNum);
+        Log.e("1111.ppdd2", pageNum + "");
         GetJsonString.getJsonString(url, new GetJsonString.StringListener() {
             @Override
             public void stringListener(String jsonStr) {
+                Log.e("1111.ppdd3", pageNum + "");
                 List<Map<String, Object>> list = JsonInfoUtils.getNewsList(jsonStr, cate_id, pageNum);
-                if (list != null && list.size() != 0 && cate_id != 7) {
+                Log.e("1111-pppp", list.size() + ".." + list.get(0).get("title") + ".." + cate_id + ".." + pageNum);
+                if (list != null && list.size() != 0 && cate_id != 7 && pageNum == 1) {
                     List<Map<String, String>> p_list = (List<Map<String, String>>) list.get(0).get("map_pic");
                     list.remove(0);
+                    Log.e("1111-plish", p_list.size() + ".." + p_list.get(0).get("p_title"));
                     setHeadView(p_list);
                 }
                 newsList.addAll(list);
+                pageNum++;
             }
         });
     }
@@ -116,14 +146,27 @@ public class NewsFragment extends Fragment {
      * 更新数据
      */
     private void updateData() {
-        url = UrlUtils.NEWS_LIST + cate_id + UrlUtils.NEWS_END + (++pageNum);
+        if (pageNum == 1) {
+            newsList.clear();
+        }
+
+        url = UrlUtils.NEWS_LIST + cate_id + UrlUtils.NEWS_END + (pageNum);
 
         GetJsonString.getJsonString(url, new GetJsonString.StringListener() {
             @Override
             public void stringListener(String jsonStr) {
                 List<Map<String, Object>> list = JsonInfoUtils.getNewsList(jsonStr, cate_id, pageNum);
+
+                if (list != null && list.size() != 0 && cate_id != 7 && pageNum == 1) {
+                    List<Map<String, String>> p_list = (List<Map<String, String>>) list.get(0).get("map_pic");
+                    list.remove(0);
+                    setHeadView(p_list);
+                }
+
                 newsList.addAll(list);
+                pageNum++;
                 adapter.notifyDataSetChanged();
+                pullToRefreshListView_main_news.onRefreshComplete();
             }
         });
     }

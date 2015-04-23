@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:moon="http://schemas.android.com/apk/res/com.moon.biz"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            >
+        <ImageView
+                android:id="@+id/imageView_cmt_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/back_icon"
+                android:onClick="clickBackIcon"
+                />
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="全部评论"
+                android:gravity="center"
+                android:textSize="25sp"
+                />
+    </RelativeLayout>
+
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/line"
+            android:layout_marginTop="3dp"
+            />
+
+    <com.moon.common.widgets.views.pulltorefresh.PullToRefreshListView
+            android:id="@+id/pullToRefreshListView_cmt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            moon:headerTextColor="#f00"
+            android:layout_marginTop="3dp"
+            android:padding="10dp"
+            />
+
+    <TextView
+            android:id="@+id/textView_cmt_emptyInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="暂无评论"
+            />
+</LinearLayout>

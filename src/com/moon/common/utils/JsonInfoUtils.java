@@ -216,4 +216,22 @@ public class JsonInfoUtils {
         return list;
     }
 
+    public static List<Map<String,String>> getCommentList(String json){
+        List<Map<String, String>> list = new ArrayList<Map<String, String>>();
+        try {
+            JSONObject object = new JSONObject(json);
+            JSONArray array = object.getJSONArray("data");
+            for (int i = 0; i < array.length(); i++) {
+                JSONObject jsonObject = array.getJSONObject(i);
+                Map<String,String> map = new HashMap<String, String>();
+                map.put("content",jsonObject.getString("content"));
+                map.put("create_time",jsonObject.getString("create_time"));
+                map.put("user",jsonObject.getString("user"));
+                list.add(map);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }
