@@ -18,30 +18,107 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             >
-        <ImageView
+
+        <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:src="@drawable/tabbar_news"
-                />
-        <ImageView
+                android:gravity="center"
+                >
+
+            <ImageView
+                    android:id="@+id/img_tab_news"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="0dp"
+                    android:src="@drawable/tabbar_news"
+                    android:onClick="clickImage"
+                    />
+
+            <TextView
+                    android:id="@+id/txt_tab_news"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="新闻"
+                    />
+        </LinearLayout>
+
+        <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:src="@drawable/tabbar_picture"
-                />
-        <ImageView
+                android:gravity="center"
+                >
+
+            <ImageView
+                    android:id="@+id/img_tab_pic"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="0dp"
+                    android:src="@drawable/tabbar_picture"
+                    android:onClick="clickImage"
+                    />
+
+            <TextView
+                    android:id="@+id/txt_tab_pic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="图片"
+                    />
+        </LinearLayout>
+
+        <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:src="@drawable/tabbar_video"
-                />
-        <ImageView
+                android:gravity="center"
+                >
+
+            <ImageView
+                    android:id="@+id/img_tab_vdo"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="0dp"
+                    android:src="@drawable/tabbar_video"
+                    android:onClick="clickImage"
+                    />
+
+            <TextView
+                    android:id="@+id/txt_tab_vdo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="视频"
+                    />
+        </LinearLayout>
+
+        <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:src="@drawable/tabbar_setting"
-                />
+                android:gravity="center"
+                >
+
+            <ImageView
+                    android:id="@+id/img_tab_set"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="0dp"
+                    android:src="@drawable/tabbar_setting"
+                    android:onClick="clickImage"
+                    />
+
+            <TextView
+                    android:id="@+id/txt_tab_set"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的"
+                    />
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

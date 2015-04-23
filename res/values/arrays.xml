@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="news_title">
+        <item>头条</item>
+        <item>娱乐</item>
+        <item>体育</item>
+        <item>财经</item>
+        <item>科技</item>
+        <item>汽车</item>
+        <item>搞笑</item>
+        <item>人民日报</item>
+        <item>央视财经</item>
+        <item>北京</item>
+    </string-array>
+    <string-array name="pic_title">
+        <item>精选</item>
+        <item>奇趣</item>
+        <item>美女</item>
+        <item>故事</item>
+    </string-array>
+    <string-array name="vdo_title">
+        <item>精选</item>
+        <item>搞笑</item>
+        <item>现场</item>
+        <item>花絮</item>
+    </string-array>
+</resources>
