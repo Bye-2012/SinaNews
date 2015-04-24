@@ -31,5 +31,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".textNews.MoreCommentAct"/>
+        <activity android:name=".picNews.PContentAct"/>
     </application>
 </manifest>

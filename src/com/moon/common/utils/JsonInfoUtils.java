@@ -183,7 +183,27 @@ public class JsonInfoUtils {
      * @return
      */
     public static Map<String, Object> getPicDetail(String json) {
-        return getNewsDetail(json);
+        Map<String, Object> map = new HashMap<String, Object>();
+        if (json != null) {
+            try {
+                JSONObject object1 = new JSONObject(json);
+                JSONObject object2 = object1.optJSONObject("data");
+
+                if (object2 != null) {
+                    for (int i = 0; i < object2.length(); i++) {
+                        map.put("content", object2.getString("content"));
+                        map.put("title", object2.getString("title"));
+                        JSONArray jsonArray = object2.optJSONArray("pic_list");
+                        if (jsonArray != null) {
+                            map.put("pic_list", picList2List(jsonArray));
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return map;
     }
 
     /**
@@ -197,17 +217,19 @@ public class JsonInfoUtils {
         if (json != null) {
             try {
                 JSONObject object1 = new JSONObject(json);
-                JSONArray jsonArray = object1.getJSONArray("data");
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject temp = jsonArray.getJSONObject(i);
-                    Map<String, String> map = new HashMap<String, String>();
-                    map.put("pic", temp.getString("pic"));
-                    map.put("play_num", temp.getString("play_num"));
-                    map.put("title", temp.getString("title"));
-                    map.put("video_url", temp.getString("video_url"));
-                    list.add(map);
-                    map = null;
-                    temp = null;
+                JSONArray jsonArray = object1.optJSONArray("data");
+                if (jsonArray != null) {
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject temp = jsonArray.getJSONObject(i);
+                        Map<String, String> map = new HashMap<String, String>();
+                        map.put("pic", temp.getString("pic"));
+                        map.put("play_num", temp.getString("play_num"));
+                        map.put("title", temp.getString("title"));
+                        map.put("video_url", temp.optString("video_url"));
+                        list.add(map);
+                        map = null;
+                        temp = null;
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -216,6 +238,11 @@ public class JsonInfoUtils {
         return list;
     }
 
+    /**
+     * 获得评论列表
+     * @param json
+     * @return
+     */
     public static List<Map<String,String>> getCommentList(String json){
         List<Map<String, String>> list = new ArrayList<Map<String, String>>();
         try {

@@ -27,4 +27,5 @@ public abstract class BaseActivity extends FragmentActivity {
     public abstract void initData();
 
     public abstract void addListener();
+
 }

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#fff"
+        >
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+            <RelativeLayout
+                    android:id="@+id/topLogin"
+                    android:gravity="center"
+                    android:background="@drawable/live_header_bg_12x"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    >
+
+                <Button
+                        android:textSize="20sp"
+                        android:background="@android:color/transparent"
+                        android:text="登陆账号"
+                        android:drawableTop="@drawable/comment_cell_icon_none_large2x"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                    android:background="#ffffff"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    >
+
+                <Button
+                        android:textSize="16sp"
+                        android:drawableTop="@drawable/usercenter_favorite_icon2x"
+                        android:background="@android:color/transparent"
+                        android:text="收藏"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        />
+
+                <ImageView
+                        android:src="@drawable/tuku_topbar_bg2x"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        />
+
+                <Button
+                        android:textSize="16sp"
+                        android:drawableTop="@drawable/usercenter_comment2x"
+                        android:background="@android:color/transparent"
+                        android:text="评论"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        />
+
+                <ImageView
+                        android:src="@drawable/tuku_topbar_bg2x"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        />
+
+                <Button
+                        android:textSize="16sp"
+                        android:drawableTop="@drawable/tuku_save_btn_forbidden2x"
+                        android:background="@android:color/transparent"
+                        android:text="查看已上传记录"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:background="@drawable/hotcitytitlebar2x"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    />
+
+            <Button
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:background="@android:color/transparent"
+                    android:gravity="left"
+                    android:drawableRight="@drawable/sina_back"
+                    android:text="频道管理"
+                    android:textSize="25sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            <Button
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:background="@android:color/transparent"
+                    android:gravity="left"
+                    android:drawableRight="@drawable/switch_button"
+                    android:text="头条推送"
+                    android:textSize="25sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            <Button
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:background="@android:color/transparent"
+                    android:gravity="left"
+                    android:drawableRight="@drawable/sina_back"
+                    android:text="正文字号"
+                    android:textSize="25sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            <Button
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:background="@android:color/transparent"
+                    android:gravity="left"
+                    android:drawableRight="@drawable/sina_back"
+                    android:text="清除缓存"
+                    android:textSize="25sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            <LinearLayout
+                    android:background="@drawable/hotcitytitlebar2x"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    />
+
+            <TextView
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:textSize="25sp"
+                    android:text="评分"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            <Button
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:background="@android:color/transparent"
+                    android:gravity="left"
+                    android:drawableRight="@drawable/sina_back"
+                    android:text="反馈"
+                    android:textSize="25sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            <Button
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:background="@android:color/transparent"
+                    android:gravity="left"
+                    android:drawableRight="@drawable/sina_back"
+                    android:text="关于"
+                    android:textSize="25sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            <LinearLayout
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                <Button
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/logout"
+                        android:text="退出登录"
+                        android:textSize="25sp"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

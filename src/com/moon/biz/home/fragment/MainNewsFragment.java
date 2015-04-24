@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.moon.adapter.ContentPageAdapter;
 import com.moon.app.AppCtx;
 import com.moon.biz.R;
-import com.moon.fragment.NewsFragment;
+import com.moon.biz.textNews.fragment.NewsFragment;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.moon.fragment;
+package com.moon.biz.textNews.fragment;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -121,19 +121,14 @@ public class NewsFragment extends Fragment {
      * 第一次加载数据
      */
     private void initData() {
-        Log.e("1111.ppdd", pageNum + "");
         url = UrlUtils.NEWS_LIST + cate_id + UrlUtils.NEWS_END + (pageNum);
-        Log.e("1111.ppdd2", pageNum + "");
         GetJsonString.getJsonString(url, new GetJsonString.StringListener() {
             @Override
             public void stringListener(String jsonStr) {
-                Log.e("1111.ppdd3", pageNum + "");
                 List<Map<String, Object>> list = JsonInfoUtils.getNewsList(jsonStr, cate_id, pageNum);
-                Log.e("1111-pppp", list.size() + ".." + list.get(0).get("title") + ".." + cate_id + ".." + pageNum);
                 if (list != null && list.size() != 0 && cate_id != 7 && pageNum == 1) {
                     List<Map<String, String>> p_list = (List<Map<String, String>>) list.get(0).get("map_pic");
                     list.remove(0);
-                    Log.e("1111-plish", p_list.size() + ".." + p_list.get(0).get("p_title"));
                     setHeadView(p_list);
                 }
                 newsList.addAll(list);

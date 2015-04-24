@@ -125,6 +125,13 @@ public class MainActivity extends FragmentActivity {
                 transaction3.commit();
                 break;
             case 3:
+                MainSettingFragment mainSettingFragment = new MainSettingFragment();
+                Bundle bundle4 = new Bundle();
+                bundle4.putInt("tabIndex", position);
+                mainSettingFragment.setArguments(bundle4);
+                FragmentTransaction transaction4 = getSupportFragmentManager().beginTransaction();
+                transaction4.replace(R.id.layout_main_fragment, mainSettingFragment);
+                transaction4.commit();
                 break;
         }
 

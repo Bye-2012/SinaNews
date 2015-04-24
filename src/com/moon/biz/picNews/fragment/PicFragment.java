@@ -1,14 +1,17 @@
-package com.moon.fragment;
+package com.moon.biz.picNews.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import com.moon.adapter.PicNewsAdapter;
 import com.moon.app.AppCtx;
 import com.moon.biz.R;
+import com.moon.biz.picNews.PContentAct;
 import com.moon.common.utils.GetJsonString;
 import com.moon.common.utils.JsonInfoUtils;
 import com.moon.common.utils.UrlUtils;
@@ -28,7 +31,7 @@ public class PicFragment extends Fragment {
 
     private ListView listView_pic;
     private int cate_id;
-    private int pageNum = 0;
+    private int pageNum = 1;
 
     private List<Map<String, Object>> pic_list;
     private PicNewsAdapter pAdapter;
@@ -51,11 +54,28 @@ public class PicFragment extends Fragment {
         listView_pic.setAdapter(pAdapter);
         updateData();
 
+        listView_pic.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String idd = pic_list.get(position).get("id").toString();
+                int count = Integer.parseInt(pic_list.get(position).get("pic_total").toString());
+
+                if (idd != null && count != -1) {
+                    Intent intent = new Intent(AppCtx.getInstance(), PContentAct.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("id",idd);
+                    bundle.putInt("count",count);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+            }
+        });
+
         //设置pullToRefreshListView监听
         pullToRefreshListView_main_news.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                pageNum = 0;
+                pageNum = 1;
                 updateData();
             }
         });
@@ -73,11 +93,11 @@ public class PicFragment extends Fragment {
      * 加载数据
      */
     private void updateData() {
-        if (pageNum == 0){
+        if (pageNum == 1){
             pic_list.clear();
         }
 
-        String url = UrlUtils.PIC_NEWS_LIST + cate_id + UrlUtils.NEWS_END + (++pageNum);
+        String url = UrlUtils.PIC_NEWS_LIST + cate_id + UrlUtils.NEWS_END + (pageNum);
 
         GetJsonString.getJsonString(url, new GetJsonString.StringListener() {
             @Override
@@ -86,6 +106,7 @@ public class PicFragment extends Fragment {
                     List<Map<String, Object>> list = JsonInfoUtils.getPicList(jsonStr);
                     pic_list.addAll(list);
                     pAdapter.notifyDataSetChanged();
+                    pageNum ++;
                 }
                 pullToRefreshListView_main_news.onRefreshComplete();
             }
