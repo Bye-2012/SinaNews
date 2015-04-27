@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:moon="http://schemas.android.com/apk/res/com.moon.biz"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            >
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="23sp"
+                android:text="我的评论"/>
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#abc"
+                android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+
+    <com.moon.common.widgets.views.pulltorefresh.PullToRefreshListView
+            android:id="@+id/pullToRefreshListView_set_comment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            moon:headerTextColor="#f00"
+            />
+
+    <ImageView
+            android:id="@+id/img_set_noneComment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/none_comment"
+            android:scaleType="fitXY"/>
+</LinearLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:moon="http://schemas.android.com/apk/res/com.moon.biz"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+        >
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            >
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="23sp"
+                android:text="我的收藏"
+                />
+
+    </LinearLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#abc"
+            />
+
+    <com.moon.common.widgets.views.pulltorefresh.PullToRefreshListView
+            android:id="@+id/pullToRefreshListView_set_collect"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            moon:headerTextColor="#f00"
+            />
+
+    <ImageView
+            android:id="@+id/img_set_noneCollect"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/none_collect"
+            android:scaleType="fitXY"
+            />
+
+</LinearLayout>

@@ -3,7 +3,6 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#FF000000"
         >
 
     <!-- 上方 -->
@@ -13,6 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:gravity="center"
+            android:background="#FF000000"
             >
 
         <ImageView
@@ -34,21 +34,21 @@
         </LinearLayout>
 
         <ImageView
+                android:id="@+id/pic_cot_collectIcon"
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
                 android:src="@drawable/collect"
                 android:onClick="clickIcon"
-                android:id="@+id/pic_cot_collectIcon"
                 />
 
         <ImageView
+                android:id="@+id/pic_cot_shareIcon"
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
                 android:src="@drawable/share"
                 android:onClick="clickIcon"
-                android:id="@+id/pic_cot_shareIcon"
                 />
     </LinearLayout>
 
@@ -59,6 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_alignParentBottom="true"
+            android:background="#FF000000"
             >
 
         <ImageView
@@ -73,13 +74,16 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:background="#FF000000"
                 >
 
             <EditText
+                    android:id="@+id/txt_pic_cmt"
                     android:layout_width="0dp"
                     android:layout_weight="2.5"
                     android:layout_height="match_parent"
                     android:hint="我来说两句..."
+                    android:textColor="#FFF"
                     android:background="#F000"
                     />
 
@@ -92,8 +96,10 @@
                     >
 
                 <ImageView
+                        android:id="@+id/img_pic_sendCmt"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
+                        android:onClick="clickIcon"
                         android:src="@drawable/comment_count"
                         />
             </LinearLayout>
@@ -102,29 +108,29 @@
     </LinearLayout>
 
     <!-- 中间 -->
-    <LinearLayout
+    <FrameLayout
             android:layout_below="@id/pcontent_top"
             android:layout_above="@id/pcontent_bottom"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:gravity="center"
             >
 
         <com.moon.common.widgets.views.uk.co.senab.photoview.HackyViewPager
                 android:id="@+id/pcontent_viewpager"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="3"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:background="#FF000000"
                 />
 
         <LinearLayout
                 android:id="@+id/layout_pic_txtcnt"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1.5"
+                android:layout_height="170dp"
                 android:orientation="vertical"
+                android:layout_gravity="bottom"
+                android:background="#33000000"
                 >
 
             <LinearLayout
@@ -177,6 +183,6 @@
 
         </LinearLayout>
 
-    </LinearLayout>
+    </FrameLayout>
 
 </RelativeLayout>
