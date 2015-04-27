@@ -1,4 +1,4 @@
-package com.moon.adapter;
+package com.moon.biz.home.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.moon.app.AppCtx;
 import com.moon.biz.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 import java.util.Map;
@@ -23,13 +24,11 @@ public class TextNewsAdapter extends BaseAdapter {
     private List<Map<String,Object>> list;
     private Context context;
     private LayoutInflater inflater;
-    private ImageLoader imageLoader;
 
     public TextNewsAdapter(List<Map<String, Object>> list, Context context) {
         this.list = list;
         this.context = context;
         inflater = LayoutInflater.from(context);
-        imageLoader = AppCtx.getInstance().getImageLoader();
     }
 
     @Override
@@ -73,7 +72,7 @@ public class TextNewsAdapter extends BaseAdapter {
 
         String url = list.get(position).get("cover_pic").toString();
         if (url != null) {
-            imageLoader.get(url,ImageLoader.getImageListener(holder.icon,R.drawable.logo,R.drawable.error));
+            Picasso.with(AppCtx.getInstance()).load(url).error(R.drawable.error).into(holder.icon);
         }
 
         return ret;

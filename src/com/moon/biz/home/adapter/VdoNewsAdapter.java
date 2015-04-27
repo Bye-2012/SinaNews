@@ -1,4 +1,4 @@
-package com.moon.adapter;
+package com.moon.biz.home.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

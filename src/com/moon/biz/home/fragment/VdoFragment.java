@@ -5,9 +5,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
-import com.moon.adapter.PicNewsAdapter;
-import com.moon.adapter.VdoNewsAdapter;
+import android.widget.TextView;
+import com.moon.biz.home.adapter.PicNewsAdapter;
+import com.moon.biz.home.adapter.VdoNewsAdapter;
 import com.moon.app.AppCtx;
 import com.moon.biz.R;
 import com.moon.common.utils.GetJsonString;
@@ -40,17 +42,24 @@ public class VdoFragment extends Fragment {
         super.onCreate(savedInstanceState);
         cate_id = getArguments().getInt("cate_id") + 14;
         vdo_list = new ArrayList<Map<String, String>>();
-        vAdapter = new VdoNewsAdapter(AppCtx.getInstance(),vdo_list);
+        vAdapter = new VdoNewsAdapter(AppCtx.getInstance(), vdo_list);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View ret;
-        ret = inflater.inflate(R.layout.fragment_news,container,false);
+        ret = inflater.inflate(R.layout.fragment_news, container, false);
 
         pullToRefreshListView_main_news = (PullToRefreshListView) ret.findViewById(R.id.pullToRefreshListView_main_news);
+        LinearLayout progressBar = (LinearLayout) ret.findViewById(R.id.progressBar);
+        TextView content_emptyInfo = (TextView) ret.findViewById(R.id.content_emptyInfo);
         listView_vdo = pullToRefreshListView_main_news.getRefreshableView();
         listView_vdo.setAdapter(vAdapter);
+        if (cate_id == 17 || cate_id == 18) {
+            pullToRefreshListView_main_news.setEmptyView(content_emptyInfo);
+        } else {
+            pullToRefreshListView_main_news.setEmptyView(progressBar);
+        }
 
         updateData();
 
@@ -72,8 +81,8 @@ public class VdoFragment extends Fragment {
         return ret;
     }
 
-    private void updateData(){
-        if (pageNum == 1){
+    private void updateData() {
+        if (pageNum == 1) {
             vdo_list.clear();
         }
 

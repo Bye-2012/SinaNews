@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            >
+        <ImageView
+                android:id="@+id/img_addNews_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/back_icon"
+                android:layout_marginLeft="15dp"
+                />
+        <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="上传新闻"
+                android:textSize="20sp"
+                />
+        <TextView
+                android:id="@+id/textView_addNews_send"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="发送"
+                android:textSize="20sp"
+                android:gravity="right|center_vertical"
+                android:layout_marginRight="15dp"
+                />
+    </LinearLayout>
+
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:src="@drawable/line"
+            android:scaleType="fitXY"
+            />
+
+    <LinearLayout
+            android:layout_marginTop="25dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="15dp"
+            >
+        <Spinner
+                android:id="@+id/spinner_add_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        <EditText
+                android:id="@+id/editText_addNews_title"
+                android:layout_marginTop="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="标题"
+                />
+
+        <EditText
+                android:id="@+id/editText_addNews_content"
+                android:layout_marginTop="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="内容"
+                android:minLines="3"
+                />
+
+        <!--<GridView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!---->
+                <!-->-->
+            <!--<ImageView-->
+                    <!--android:id="@+id/img_addNews_imgs"-->
+                    <!--android:layout_width="60dp"-->
+                    <!--android:layout_height="60dp"-->
+                    <!--android:src="@drawable/logo"/>-->
+            <!--<ImageView-->
+                    <!--android:id="@+id/img_addNews_addPic"-->
+                    <!--android:layout_width="60dp"-->
+                    <!--android:layout_height="60dp"-->
+                    <!--android:scaleType="fitXY"-->
+                    <!--android:src="@drawable/common_add"-->
+                    <!--/>-->
+        <!--</GridView>-->
+
+        <LinearLayout
+                android:layout_marginTop="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+            <ImageView
+                    android:id="@+id/img_addNews_imgs"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/logo"/>
+            <ImageView
+                    android:id="@+id/img_addNews_addPic"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/common_add"
+                    />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
