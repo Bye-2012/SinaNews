@@ -11,27 +11,30 @@
             android:layout_height="240dp"
             />
 
-    <LinearLayout
-            android:id="@+id/layout_viewpager"
+    <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:gravity="right"
-            android:layout_marginLeft="150dp"
-            android:orientation="horizontal"
+            android:background="#7abc"
             >
+        <TextView
+                android:id="@+id/textView_headerimage_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="#000"
+                />
 
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView_headerimage_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="10dp"
-        android:textSize="15sp"
-        android:textColor="#000"
-        />
+        <LinearLayout
+                android:id="@+id/layout_viewpager"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                >
+        </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.moon.adapter.ContentPageAdapter;
+import com.moon.biz.home.adapter.ContentPageAdapter;
 import com.moon.app.AppCtx;
 import com.moon.biz.R;
 
@@ -90,8 +90,6 @@ public class MainVdoFragment extends Fragment {
             list_contents.add(fragment);
         }
         viewPager_content.setAdapter(new ContentPageAdapter(getChildFragmentManager(), list_contents));
-
-        viewPager_content.setOffscreenPageLimit(3);
 
         viewPager_content.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

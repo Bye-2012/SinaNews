@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.moon.adapter.ContentPageAdapter;
+import com.moon.biz.home.adapter.ContentPageAdapter;
 import com.moon.app.AppCtx;
 import com.moon.biz.R;
-import com.moon.biz.picNews.fragment.PicFragment;
+import com.moon.biz.home.picNews.fragment.PicFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,7 @@ import java.util.List;
  * User: Moon
  * Date:2015/4/22
  */
-public class MainPicFragment extends MainBaseFragment {
+public class MainPicFragment extends Fragment {
     private int tabIndex;
     private AppCtx appctx;
     private List<String[]> titleList;
@@ -91,8 +91,6 @@ public class MainPicFragment extends MainBaseFragment {
             list_contents.add(fragment);
         }
         viewPager_content.setAdapter(new ContentPageAdapter(getChildFragmentManager(), list_contents));
-
-        viewPager_content.setOffscreenPageLimit(3);
 
         viewPager_content.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

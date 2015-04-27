@@ -1,5 +1,6 @@
 package com.moon.common.utils;
 
+import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -58,22 +59,23 @@ public class JsonInfoUtils {
                 JSONObject object1 = new JSONObject(json);
                 JSONObject object2 = object1.getJSONObject("data");
 
-                if (num == 1 && id != 7) {
+                if (num == 1) {
                     JSONArray jsonArray_pic = object2.optJSONArray("top_news");
                     Map<String, Object> map_pic = new HashMap<String, Object>();
-                    List<Map<String,String>> list_pic = new ArrayList<Map<String, String>>();
+                    List<Map<String, String>> list_pic = new ArrayList<Map<String, String>>();
                     if (jsonArray_pic != null) {
                         for (int i = 0; i < jsonArray_pic.length(); i++) {
                             Map<String, String> map = new HashMap<String, String>();
                             JSONObject temp = jsonArray_pic.getJSONObject(i);
                             map.put("p_title", temp.getString("title"));
                             map.put("p_cover_pic", temp.getString("cover_pic"));
+                            map.put("p_id",temp.getString("id"));
                             list_pic.add(map);
                             map = null;
                             temp = null;
                         }
                     }
-                    map_pic.put("map_pic",list_pic);
+                    map_pic.put("map_pic", list_pic);
                     list.add(map_pic);
                 }
 
@@ -155,7 +157,7 @@ public class JsonInfoUtils {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject temp = jsonArray.getJSONObject(i);
                     Map<String, Object> map = new HashMap<String, Object>();
-                    map.put("id",temp.getString("id"));
+                    map.put("id", temp.getString("id"));
                     map.put("title", temp.getString("title"));
                     map.put("content", temp.getString("content"));
                     map.put("descript", temp.getString("descript"));
@@ -191,6 +193,8 @@ public class JsonInfoUtils {
 
                 if (object2 != null) {
                     for (int i = 0; i < object2.length(); i++) {
+                        map.put("cover_pic",object2.getString("cover_pic"));
+                        map.put("news_id",object2.getString("news_id"));
                         map.put("content", object2.getString("content"));
                         map.put("title", object2.getString("title"));
                         JSONArray jsonArray = object2.optJSONArray("pic_list");
@@ -240,25 +244,159 @@ public class JsonInfoUtils {
 
     /**
      * 获得评论列表
+     *
      * @param json
      * @return
      */
-    public static List<Map<String,String>> getCommentList(String json){
+    public static List<Map<String, String>> getCommentList(String json) {
         List<Map<String, String>> list = new ArrayList<Map<String, String>>();
         try {
             JSONObject object = new JSONObject(json);
             JSONArray array = object.getJSONArray("data");
             for (int i = 0; i < array.length(); i++) {
                 JSONObject jsonObject = array.getJSONObject(i);
-                Map<String,String> map = new HashMap<String, String>();
-                map.put("content",jsonObject.getString("content"));
-                map.put("create_time",jsonObject.getString("create_time"));
-                map.put("user",jsonObject.getString("user"));
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("content", jsonObject.getString("content"));
+                map.put("create_time", jsonObject.getString("create_time"));
+                map.put("user", jsonObject.getString("user"));
                 list.add(map);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return list;
+    }
+
+    /**
+     * 获得登录信息
+     * @param json
+     * @return
+     */
+    public static Map<String, String> getLoginInfo(String json) {
+        Map<String, String> map = new HashMap<String, String>();
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            map.put("code", jsonObject.getString("code"));
+            map.put("message", jsonObject.getString("message"));
+            JSONObject data = jsonObject.optJSONObject("data");
+            if (data != null) {
+                map.put("id", data.getString("id"));
+                map.put("username", data.getString("username"));
+                map.put("nickname", data.getString("nickname"));
+                map.put("token", data.getString("token"));
+                map.put("last_login_time", data.getString("last_login_time"));
+                map.put("header_img", data.optString("last_login_time"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
+
+    /**
+     * 获得注册信息
+     * @param json
+     * @return
+     */
+    public static Map<String, String> getRegInfo(String json) {
+        Map<String, String> map = new HashMap<String, String>();
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            map.put("code", jsonObject.getString("code"));
+            map.put("message", jsonObject.getString("message"));
+            JSONObject data = jsonObject.optJSONObject("data");
+            if (data != null) {
+                map.put("id", data.getString("id"));
+                map.put("username", data.getString("username"));
+                map.put("password", data.getString("password"));
+                map.put("nickname", data.getString("nickname"));
+                map.put("token", data.getString("token"));
+                map.put("sex", data.getString("sex"));
+                map.put("create_time", data.getString("create_time"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
+
+    /**
+     * 获得发表评论信息
+     * @param json
+     * @return
+     */
+    public static Map<String, String> getCmtAddInfo(String json) {
+        Map<String, String> map = new HashMap<String, String>();
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            map.put("code", jsonObject.getString("code"));
+            map.put("message", jsonObject.getString("message"));
+            JSONObject data = jsonObject.optJSONObject("data");
+            if (data != null) {
+                map.put("content", data.getString("content"));
+                map.put("create_time", data.getString("create_time"));
+                map.put("item_id", data.getString("item_id"));
+                map.put("nickname", data.getString("nickname"));
+                map.put("user", data.getString("user"));
+                map.put("sex", data.getString("sex"));
+                map.put("create_time", data.getString("create_time"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
+
+    /**
+     * 获得我的评论列表
+     * @param json
+     * @return
+     */
+    public static List<Map<String, String>> getMyCmt(String json) {
+        List<Map<String, String>> list = new ArrayList<Map<String, String>>();
+        try {
+            JSONObject object = new JSONObject(json);
+            JSONArray data = object.optJSONArray("data");
+
+            if (data != null) {
+                for (int i = 0; i < data.length(); i++) {
+                    Map<String, String> map = new HashMap<String, String>();
+                    JSONObject jsonObject = data.getJSONObject(i);
+                    map.put("content", jsonObject.getString("content"));
+                    map.put("title", jsonObject.getString("title"));
+                    map.put("create_time", jsonObject.getString("create_time"));
+                    list.add(map);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    /**
+     * 获得发布新闻信息
+     * @param json
+     * @return
+     */
+    public static Map<String,String> getSendNewsInfo(String json){
+        Map<String,String> map = new HashMap<String, String>();
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            map.put("code",jsonObject.getString("code"));
+            map.put("message",jsonObject.getString("message"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
+
+    /**
+     * 获得退出返回信息
+     * @param json
+     * @return
+     */
+    public static Map<String,String> getExitInfo(String json){
+        return getSendNewsInfo(json);
     }
 }

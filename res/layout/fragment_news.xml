@@ -14,11 +14,24 @@
             moon:headerTextColor="#f00"
             />
 
-    <TextView
-            android:id="@+id/news_emptyinfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="暂无数据"
-            />
+    <LinearLayout
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            >
+        <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+    </LinearLayout>
 
+    <TextView
+            android:id="@+id/content_emptyInfo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="功能暂未开发"
+            android:textSize="30sp"
+            />
 </LinearLayout>
