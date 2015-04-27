@@ -1,10 +1,8 @@
-package com.moon.adapter;
+package com.moon.biz.home.adapter;
 
-import android.graphics.Bitmap;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
-import com.moon.biz.R;
 import com.moon.common.widgets.views.uk.co.senab.photoview.PhotoView;
 
 import java.util.List;
@@ -16,14 +14,11 @@ import java.util.List;
  */
 public class SamplePagerAdapter extends PagerAdapter {
 
-    private List<Bitmap> list;
+    private List<PhotoView> list;
 
-    public SamplePagerAdapter(List<Bitmap> list) {
+    public SamplePagerAdapter(List<PhotoView> list) {
         this.list = list;
     }
-
-    private static final int[] sDrawables = { R.drawable.wallpaper, R.drawable.wallpaper, R.drawable.wallpaper,
-            R.drawable.wallpaper, R.drawable.wallpaper, R.drawable.wallpaper };
 
     @Override
     public int getCount() {
@@ -32,11 +27,8 @@ public class SamplePagerAdapter extends PagerAdapter {
 
     @Override
     public View instantiateItem(ViewGroup container, int position) {
-        PhotoView photoView = new PhotoView(container.getContext());
-        photoView.setImageBitmap(list.get(position));
-
+        PhotoView photoView = list.get(position);
         container.addView(photoView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-
         return photoView;
     }
 
